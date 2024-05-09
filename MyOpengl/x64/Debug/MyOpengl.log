@@ -1,0 +1,12 @@
+﻿  DebugErrors.cpp
+  IndexBuffer.cpp
+  main.cpp
+  Shader.cpp
+  VertexArray.cpp
+D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\VertexArray.cpp(42,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  VertexBuffer.cpp
+  Generating Code...
+glew32s.lib(glew.obj) : warning LNK4099: PDB '' was not found with 'glew32s.lib(glew.obj)' or at ''; linking object as if no debug info
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  MyOpengl.vcxproj -> D:\Projects\GameProjects\Github\openglLearning\x64\Debug\MyOpengl.exe
