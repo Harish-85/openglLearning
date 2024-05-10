@@ -9,4 +9,5 @@ public:
 	~VertexBuffer();
 
 	void Bind() const;
+	unsigned int getVertexBuffer() const;
 };

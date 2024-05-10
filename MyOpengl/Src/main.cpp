@@ -4,6 +4,7 @@
 #include <iostream>
 #include "DebugErrors.h"
 #include "IndexBuffer.h"
+#include "Renderer.h"
 #include "Shader.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
@@ -36,6 +37,13 @@ int main(){
 		0.0f,-.5f
 
 	};
+	float colors[]
+	{
+		1.0f,0.0f,0.0f,1.0f,
+		0.0f,1.0f,0.0f,1.0f,
+		0.0f,0.0f,1.0f,1.0f,
+		1.0f,0.0f,0.0f,1.0f,
+	};
 	unsigned int index[]
 	{
 		0,1,2,
@@ -53,27 +61,20 @@ int main(){
 	
 	Shader s("res/Shaders/Base.shader");
 	s.bind();
-	s.setUniform4f("u_col",0.0,1,0,1);
+
+	Renderer renderer;
 
 	VertexBufferLayout vbl;
 	vbl.append(GL_FLOAT,false,2);
 	VertexArray va;
 	va.LinkVertexArray(vb,ib,vbl);
 
-	GLCall(glBindVertexArray(0));
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER,0));
-	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0));
-
-	va.Bind();
-	s.bind();
 	while(!glfwWindowShouldClose(win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		renderer.Draw(va,s);
 		
-		GLCall(glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,nullptr));
-		
-
 		glfwSwapBuffers(win);
 		glfwPollEvents();
 	}

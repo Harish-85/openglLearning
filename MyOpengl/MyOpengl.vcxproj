@@ -138,14 +138,20 @@
     <ClCompile Include="Src\DebugErrors.cpp" />
     <ClCompile Include="Src\IndexBuffer.cpp" />
     <ClCompile Include="Src\main.cpp" />
+    <ClCompile Include="Src\Renderer.cpp" />
     <ClCompile Include="Src\Shader.cpp" />
+    <ClCompile Include="Src\Texture.cpp" />
+    <ClCompile Include="Src\vendor\std_image.cpp" />
     <ClCompile Include="Src\VertexArray.cpp" />
     <ClCompile Include="Src\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\DebugErrors.h" />
     <ClInclude Include="Src\IndexBuffer.h" />
+    <ClInclude Include="Src\Renderer.h" />
     <ClInclude Include="Src\Shader.h" />
+    <ClInclude Include="Src\Texture.h" />
+    <ClInclude Include="Src\vendor\std_image.h" />
     <ClInclude Include="Src\VertexArray.h" />
     <ClInclude Include="Src\VertexBuffer.h" />
     <ClInclude Include="Src\VertexBufferLayout.h" />

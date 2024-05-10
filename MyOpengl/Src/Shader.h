@@ -10,7 +10,7 @@ public:
 	Shader(const std::string& path);
 	~Shader();
 	void printShader();
-	void bind();
+	void bind() const ;
 	void unbind();
 	void setUniform4f(const std::string& name,float x,float y ,float z,float w) const;
 private:

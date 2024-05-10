@@ -1,4 +1,5 @@
 #pragma once
+#include <inttypes.h>
 
 class IndexBuffer
 {
@@ -9,4 +10,5 @@ public:
 	~IndexBuffer();
 
 	void Bind() const;
+	uint32_t getIndexBuffer() const;
 };

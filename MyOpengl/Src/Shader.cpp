@@ -23,7 +23,7 @@ void Shader::printShader()
 	
 }
 
-void Shader::bind()
+void Shader::bind() const
 {
 	GLCall(glUseProgram(m_rendererId));
 }
