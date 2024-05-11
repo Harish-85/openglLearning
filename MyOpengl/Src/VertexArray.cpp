@@ -40,7 +40,7 @@ void VertexArray::LinkVertexArray(const VertexBuffer& vb, const IndexBuffer& ib,
 		
 		offset += el.count * sizeof(el.type);
 	}
-	glVertexArrayVertexBuffer(m_rendererId,0,vb.getVertexBuffer(),0,2*sizeof(GLfloat));
+	glVertexArrayVertexBuffer(m_rendererId,0,vb.getVertexBuffer(),0,vbo.getStride());
 	glVertexArrayElementBuffer(m_rendererId,ib.getIndexBuffer());
 
 }

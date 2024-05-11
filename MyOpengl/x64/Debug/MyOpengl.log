@@ -1,3 +1,3 @@
-﻿  Renderer.cpp
-D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Renderer.cpp(10,51): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+﻿  Scanning sources for module dependencies...
+  main.cpp
   MyOpengl.vcxproj -> D:\Projects\GameProjects\Github\openglLearning\x64\Debug\MyOpengl.exe

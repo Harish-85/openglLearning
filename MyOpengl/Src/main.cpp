@@ -6,8 +6,14 @@
 #include "IndexBuffer.h"
 #include "Renderer.h"
 #include "Shader.h"
+#include "Texture.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
 
 int main(){
 	
@@ -31,10 +37,10 @@ int main(){
 	}
 
 	float positions[] = {
-		0.0f,.5f,
-		-.5f,0.0f,
-		0.50f,0.0f,
-		0.0f,-.5f
+		-100.f,-100.f,0.0f,0.0f,
+		100.f,-100.f,1.0f,0.0f,
+		100.f,100.f,1.0f,1.0f,
+		-100.f,100.f,0.0f,1.0f
 
 	};
 	float colors[]
@@ -47,7 +53,7 @@ int main(){
 	unsigned int index[]
 	{
 		0,1,2,
-		1,2,3
+		2,3,0
 	};
 	
 
@@ -56,28 +62,87 @@ int main(){
 	int max;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,&max);
 	std::cout<<"max" <<max;
-	VertexBuffer vb(positions,sizeof(float)*8);
+	VertexBuffer vb(positions,sizeof(float)*16);
 	IndexBuffer ib(index,sizeof(unsigned int) * 6);
-	
+	glm::vec3 translation(200,200,0);
+
+
 	Shader s("res/Shaders/Base.shader");
 	s.bind();
+	
+	Texture tex("res/Tex/showcase1.png");
+	tex.Bind(0);
+	s.setUniform1i("u_Texture",0);
+
 
 	Renderer renderer;
-
+	ImGui::CreateContext();
+	ImGui_ImplGlfw_InitForOpenGL(win,true);
+	ImGui_ImplOpenGL3_Init("#version 440");
+	ImGui::StyleColorsDark();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	
+io.Fonts->AddFontDefault();
+io.Fonts->Build();
 	VertexBufferLayout vbl;
+	vbl.append(GL_FLOAT,false,2);
 	vbl.append(GL_FLOAT,false,2);
 	VertexArray va;
 	va.LinkVertexArray(vb,ib,vbl);
 
+	 bool show_demo_window = true;
+    bool show_another_window = false;
+    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
 	while(!glfwWindowShouldClose(win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-
-		renderer.Draw(va,s);
 		
+	glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1.0f,1.0f);
+	glm::mat4 view = glm::translate(glm::mat4(1.0f),translation);
+	glm::mat4 model = glm::translate(glm::mat4(1.0f),glm::vec3(200,200,0));
+	glm::mat4 mvp = proj * view;
+		s.setUniformMat4("u_MVP",mvp);
+		renderer.Draw(va,s);
+
+
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+		 static float f = 0.0f;
+            static int counter = 0;
+
+		   ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+            ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+            ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+            ImGui::Checkbox("Another Window", &show_another_window);
+
+            ImGui::SliderFloat("Transltaion", &translation.x, -200.f, 200.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+            ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+            if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+                counter++;
+            ImGui::SameLine();
+            ImGui::Text("counter = %d", counter);
+
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+            ImGui::End();
+
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+
 		glfwSwapBuffers(win);
 		glfwPollEvents();
 	}
 
+	ImGui_ImplGlfw_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui::DestroyContext();
+	glfwTerminate();
 	std::cout<<"TEst";
 }

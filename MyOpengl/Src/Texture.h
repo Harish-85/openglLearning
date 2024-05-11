@@ -12,6 +12,8 @@ public:
 	Texture(const std::string& path);
 	~Texture();
 
+	void Bind(unsigned int slot) const;
+
 	inline int getWidth()const {return width;}
 	inline int getHeight()const {return height;}
 };
