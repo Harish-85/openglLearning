@@ -55,16 +55,15 @@ int main(){
 		0,1,2,
 		2,3,0
 	};
-	
+	VertexBuffer vb(positions,sizeof(float)*16);
+	IndexBuffer ib(index,sizeof(unsigned int) * 6);
 
 	std::cout<<"\nVersion " <<(glGetString(GL_VERSION))<<'\n';
 	
 	int max;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,&max);
 	std::cout<<"max" <<max;
-	VertexBuffer vb(positions,sizeof(float)*16);
-	IndexBuffer ib(index,sizeof(unsigned int) * 6);
-	glm::vec3 translation(200,200,0);
+	
 
 
 	Shader s("res/Shaders/Base.shader");
@@ -92,8 +91,11 @@ io.Fonts->Build();
 	VertexArray va;
 	va.LinkVertexArray(vb,ib,vbl);
 
-	 bool show_demo_window = true;
-    bool show_another_window = false;
+	glm::vec3 translation(200,200,0);
+	float angle = 30.f;
+	float angle2 = 30.f;
+	float angle3 = 30.f;
+
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	while(!glfwWindowShouldClose(win))
@@ -101,9 +103,11 @@ io.Fonts->Build();
 		glClear(GL_COLOR_BUFFER_BIT);
 		
 	glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1.0f,1.0f);
-	glm::mat4 view = glm::translate(glm::mat4(1.0f),translation);
-	glm::mat4 model = glm::translate(glm::mat4(1.0f),glm::vec3(200,200,0));
-	glm::mat4 mvp = proj * view;
+	glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle),glm::vec3(0,1,0));
+		rot = glm::rotate(rot,glm::radians(angle2),glm::vec3(1,0,0));
+		rot = glm::rotate(rot,glm::radians(angle3),glm::vec3(0,0,1));
+	glm::mat4 model = glm::translate(glm::mat4(1.0f),translation) * rot;
+	glm::mat4 mvp = proj * model;
 		s.setUniformMat4("u_MVP",mvp);
 		renderer.Draw(va,s);
 
@@ -116,13 +120,11 @@ io.Fonts->Build();
 
 		   ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 
-            ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-            ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
-            ImGui::Checkbox("Another Window", &show_another_window);
 
-            ImGui::SliderFloat("Transltaion", &translation.x, -200.f, 200.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-            ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
+            ImGui::SliderFloat3("Transltaion", &translation.x, -200.f, 200.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+               ImGui::SliderFloat("Angle", &angle, 0, 360);            // Edit 1 float using a slider from 0.0f to 1.0f
+            ImGui::SliderFloat("Angle2", &angle2, 0, 360);  
+            ImGui::SliderFloat("Angle3", &angle3, 0, 360);  
             if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
                 counter++;
             ImGui::SameLine();

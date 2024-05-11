@@ -7,8 +7,8 @@ uniform mat4 u_MVP;
 out vec2 v_TexCoord;
 
 void main(){
-	gl_Position = u_MVP * position;
 	v_TexCoord = texCoord;
+	gl_Position = u_MVP * position;
 }
 
 #shader fragment
@@ -23,6 +23,6 @@ void main(){
 
 	vec4 texCol = texture(u_Texture,v_TexCoord);
 	color = texCol;
-	//color = vec4(v_TexCoord.xy,0,0);
+	color = vec4(v_TexCoord.xy,0,0);
 }
 
