@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Src\DebugErrors.h" />
     <ClInclude Include="Src\IndexBuffer.h" />
+    <ClInclude Include="Src\Mesh.h" />
     <ClInclude Include="Src\Renderer.h" />
     <ClInclude Include="Src\Shader.h" />
     <ClInclude Include="Src\Texture.h" />
@@ -457,6 +458,7 @@
     <ClInclude Include="Src\vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="Src\vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="Src\vendor\stdImage\std_image.h" />
+    <ClInclude Include="Src\Vertex.h" />
     <ClInclude Include="Src\VertexArray.h" />
     <ClInclude Include="Src\VertexBuffer.h" />
     <ClInclude Include="Src\VertexBufferLayout.h" />

@@ -326,6 +326,8 @@
     <ClInclude Include="Src\vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="Src\vendor\imgui\imgui_impl_opengl3.h" />
     <ClInclude Include="Src\vendor\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Src\Mesh.h" />
+    <ClInclude Include="Src\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Base.shader" />

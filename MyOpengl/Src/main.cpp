@@ -37,10 +37,16 @@ int main(){
 	}
 
 	float positions[] = {
-		-100.f,-100.f,0.0f,0.0f,
-		100.f,-100.f,1.0f,0.0f,
-		100.f,100.f,1.0f,1.0f,
-		-100.f,100.f,0.0f,1.0f
+		//front
+		-100.f,-100.f,-100.0f,1.0f,0.0f,0.0f,//A
+		100.f,-100.f,-100.0f,1.0f,0.0f,0.0f,//B
+		100.f,100.f,-100.0f,1.0f,0.0f,0.0f,//C
+		-100.f,100.f,-100.0f,1.0f,0.0f,0.0f,//D
+		//top
+		-100.f,-100.f,100.0f,0.0f,1.0f,0.0f,//e
+		100.f,-100.f,100.0f,.0f,1.0f,0.0f,//f
+		100.f,100.f,100.0f,.0f,1.0f,0.0f,//g
+		-100.f,100.f,100.0f,.0f,1.0f,0.0f//h
 
 	};
 	float colors[]
@@ -52,11 +58,18 @@ int main(){
 	};
 	unsigned int index[]
 	{
-		0,1,2,
-		2,3,0
+		 0, 1, 3, 3, 1, 2,
+    1, 5, 2, 2, 5, 6,
+    5, 4, 6, 6, 4, 7,
+    4, 0, 7, 7, 0, 3,
+    3, 2, 7, 7, 2, 6,
+    4, 5, 0, 0, 5, 1
+
 	};
-	VertexBuffer vb(positions,sizeof(float)*16);
-	IndexBuffer ib(index,sizeof(unsigned int) * 6);
+	
+
+	VertexBuffer vb(positions,sizeof(float)*6*4 * 2);
+	IndexBuffer ib(index,sizeof(unsigned int) * 36);
 
 	std::cout<<"\nVersion " <<(glGetString(GL_VERSION))<<'\n';
 	
@@ -86,8 +99,8 @@ int main(){
 io.Fonts->AddFontDefault();
 io.Fonts->Build();
 	VertexBufferLayout vbl;
-	vbl.append(GL_FLOAT,false,2);
-	vbl.append(GL_FLOAT,false,2);
+	vbl.append(GL_FLOAT,false,3);
+	vbl.append(GL_FLOAT,false,3);
 	VertexArray va;
 	va.LinkVertexArray(vb,ib,vbl);
 
@@ -102,7 +115,7 @@ io.Fonts->Build();
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-	glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1.0f,1.0f);
+	glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1000.0f,1000.0f);
 	glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle),glm::vec3(0,1,0));
 		rot = glm::rotate(rot,glm::radians(angle2),glm::vec3(1,0,0));
 		rot = glm::rotate(rot,glm::radians(angle3),glm::vec3(0,0,1));
