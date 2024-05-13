@@ -89,6 +89,9 @@ void Shader::ErrorCheck(unsigned int id)
 		glGetShaderInfoLog(id,len*sizeof(char),&len,msg);
 		std::cout <<"SHADER COMPILE FAILED\n";
 		std::cout<<msg;
+	}else
+	{
+		std::cout<<"Shader compile pased\n";
 	}
 }
 

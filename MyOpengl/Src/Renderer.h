@@ -3,8 +3,10 @@
 #include "Shader.h"
 #include <GLFW/glfw3.h>
 
+#include "Mesh.h"
+
 class Renderer
 {
 public:
-	void Draw(const VertexArray& va,const Shader& shader) const ;
+	void Draw(const Mesh& m,Shader& shader) const ;
 };

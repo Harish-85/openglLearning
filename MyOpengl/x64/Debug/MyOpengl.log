@@ -1,3 +1,4 @@
 ﻿  Scanning sources for module dependencies...
-  main.cpp
+  Mesh.cpp
+D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Mesh.cpp(34,2): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
   MyOpengl.vcxproj -> D:\Projects\GameProjects\Github\openglLearning\x64\Debug\MyOpengl.exe

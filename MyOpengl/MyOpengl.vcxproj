@@ -138,11 +138,14 @@
     <ClCompile Include="Src\DebugErrors.cpp" />
     <ClCompile Include="Src\IndexBuffer.cpp" />
     <ClCompile Include="Src\main.cpp" />
+    <ClCompile Include="Src\Mesh.cpp" />
+    <ClCompile Include="Src\modelMesh.cpp" />
     <ClCompile Include="Src\Renderer.cpp" />
     <ClCompile Include="Src\Shader.cpp" />
     <ClCompile Include="Src\Texture.cpp" />
     <ClCompile Include="Src\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Src\vendor\glm\glm.cppm" />
+    <ClCompile Include="Src\vendor\gltf\tiny_gltf.cpp" />
     <ClCompile Include="Src\vendor\imgui\imgui.cpp" />
     <ClCompile Include="Src\vendor\imgui\imgui_demo.cpp" />
     <ClCompile Include="Src\vendor\imgui\imgui_draw.cpp" />
@@ -158,6 +161,7 @@
     <ClInclude Include="Src\DebugErrors.h" />
     <ClInclude Include="Src\IndexBuffer.h" />
     <ClInclude Include="Src\Mesh.h" />
+    <ClInclude Include="Src\modelMesh.h" />
     <ClInclude Include="Src\Renderer.h" />
     <ClInclude Include="Src\Shader.h" />
     <ClInclude Include="Src\Texture.h" />
@@ -449,6 +453,7 @@
     <ClInclude Include="Src\vendor\glm\vec3.hpp" />
     <ClInclude Include="Src\vendor\glm\vec4.hpp" />
     <ClInclude Include="Src\vendor\glm\vector_relational.hpp" />
+    <ClInclude Include="Src\vendor\gltf\tiny_gltf.h" />
     <ClInclude Include="Src\vendor\imgui\imconfig.h" />
     <ClInclude Include="Src\vendor\imgui\imgui.h" />
     <ClInclude Include="Src\vendor\imgui\imgui_impl_glfw.h" />
@@ -458,7 +463,6 @@
     <ClInclude Include="Src\vendor\imgui\imstb_textedit.h" />
     <ClInclude Include="Src\vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="Src\vendor\stdImage\std_image.h" />
-    <ClInclude Include="Src\Vertex.h" />
     <ClInclude Include="Src\VertexArray.h" />
     <ClInclude Include="Src\VertexBuffer.h" />
     <ClInclude Include="Src\VertexBufferLayout.h" />

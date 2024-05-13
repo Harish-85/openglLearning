@@ -1,12 +1,15 @@
 #pragma once
 #include <inttypes.h>
 
+#include "VertexBuffer.h"
+
 class IndexBuffer
 {
 	unsigned int m_rendererID;
 public:
 	
-	IndexBuffer(const void* data, unsigned int size);
+	
+	IndexBuffer(const std::vector<unsigned int>& data);
 	~IndexBuffer();
 
 	void Bind() const;

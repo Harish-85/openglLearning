@@ -4,12 +4,13 @@
 
 #include "DebugErrors.h"
 
-VertexBuffer::VertexBuffer(const void* data,unsigned int size)
+VertexBuffer::VertexBuffer(const std::vector<vertex>& data)
 {
 
 	GLCall(glCreateBuffers(1,&m_rendererID));
 	
-	GLCall(glNamedBufferData(m_rendererID,size,data,GL_STATIC_DRAW));
+	GLCall(glNamedBufferData(m_rendererID,data.size() * sizeof(vertex),data.data(),GL_STATIC_DRAW));
+	
 }
 
 VertexBuffer::~VertexBuffer()

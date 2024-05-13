@@ -1,14 +1,15 @@
 #include "IndexBuffer.h"
 
+#include <vector>
 #include <gl/glew.h>
-
+#include "VertexBuffer.h"
 #include "DebugErrors.h"
 
-IndexBuffer::IndexBuffer(const void* data, unsigned int size)
+IndexBuffer::IndexBuffer(const std::vector<unsigned int>& data)
 {
 	GLCall(glCreateBuffers(1,&m_rendererID));
 	
-	GLCall(glNamedBufferData(m_rendererID,size,data,GL_STATIC_DRAW));
+	GLCall(glNamedBufferData(m_rendererID,data.size() * sizeof(unsigned int),data.data(),GL_STATIC_DRAW));
 }
 
 IndexBuffer::~IndexBuffer()

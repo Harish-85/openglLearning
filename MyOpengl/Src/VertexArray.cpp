@@ -25,7 +25,8 @@ void VertexArray::Bind() const
 
 void VertexArray::LinkVertexArray(const VertexBuffer& vb, const IndexBuffer& ib,  const VertexBufferLayout& vbo) const
 {
-	Bind();
+	//Bind();
+	
 	unsigned int offset = 0;
 	std::vector<VertexBufferElement> elements= vbo.getVertexLayout();
 	

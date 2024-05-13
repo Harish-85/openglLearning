@@ -4,6 +4,7 @@
 #include <iostream>
 #include "DebugErrors.h"
 #include "IndexBuffer.h"
+#include "Mesh.h"
 #include "Renderer.h"
 #include "Shader.h"
 #include "Texture.h"
@@ -36,48 +37,30 @@ int main(){
 		return -1;
 	}
 
-	float positions[] = {
-		//front
-		-100.f,-100.f,-100.0f,1.0f,0.0f,0.0f,//A
-		100.f,-100.f,-100.0f,1.0f,0.0f,0.0f,//B
-		100.f,100.f,-100.0f,1.0f,0.0f,0.0f,//C
-		-100.f,100.f,-100.0f,1.0f,0.0f,0.0f,//D
-		//top
-		-100.f,-100.f,100.0f,0.0f,1.0f,0.0f,//e
-		100.f,-100.f,100.0f,.0f,1.0f,0.0f,//f
-		100.f,100.f,100.0f,.0f,1.0f,0.0f,//g
-		-100.f,100.f,100.0f,.0f,1.0f,0.0f//h
-
+	vertex positions[] =
+	{ //               COORDINATES           /            COLORS          /           NORMALS         /       TEXTURE COORDINATES    //
+	vertex{glm::vec3(-100.0f, 0.0f,  100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f)},
+	vertex{glm::vec3(-100.0f, 0.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 1.0f)},
+	vertex{glm::vec3( 100.0f, 0.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f)},
+	vertex{glm::vec3( 100.0f, 0.0f,  100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
 	};
-	float colors[]
+
+// Indices for vertices order
+	GLuint index[] =
 	{
-		1.0f,0.0f,0.0f,1.0f,
-		0.0f,1.0f,0.0f,1.0f,
-		0.0f,0.0f,1.0f,1.0f,
-		1.0f,0.0f,0.0f,1.0f,
+	0, 1, 2,
+	0, 2, 3
 	};
-	unsigned int index[]
-	{
-		 0, 1, 3, 3, 1, 2,
-    1, 5, 2, 2, 5, 6,
-    5, 4, 6, 6, 4, 7,
-    4, 0, 7, 7, 0, 3,
-    3, 2, 7, 7, 2, 6,
-    4, 5, 0, 0, 5, 1
 
-	};
-	
+	std::vector <vertex> verts(positions,positions+std::size(positions));
+	std::vector<unsigned int> inds(index,index+std::size(index));
 
-	VertexBuffer vb(positions,sizeof(float)*6*4 * 2);
-	IndexBuffer ib(index,sizeof(unsigned int) * 36);
+	Mesh m(verts,inds);
 
 	std::cout<<"\nVersion " <<(glGetString(GL_VERSION))<<'\n';
 	
-	int max;
-	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,&max);
-	std::cout<<"max" <<max;
 	
-
+	
 
 	Shader s("res/Shaders/Base.shader");
 	s.bind();
@@ -96,33 +79,29 @@ int main(){
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 	
-io.Fonts->AddFontDefault();
-io.Fonts->Build();
-	VertexBufferLayout vbl;
-	vbl.append(GL_FLOAT,false,3);
-	vbl.append(GL_FLOAT,false,3);
-	VertexArray va;
-	va.LinkVertexArray(vb,ib,vbl);
-
+	io.Fonts->AddFontDefault();
+	io.Fonts->Build();
+	
 	glm::vec3 translation(200,200,0);
 	float angle = 30.f;
 	float angle2 = 30.f;
 	float angle3 = 30.f;
 
-    ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+    
 
 	while(!glfwWindowShouldClose(win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-	glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1000.0f,1000.0f);
-	glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle),glm::vec3(0,1,0));
+		glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1000.0f,1000.0f);
+		glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle),glm::vec3(0,1,0));
 		rot = glm::rotate(rot,glm::radians(angle2),glm::vec3(1,0,0));
 		rot = glm::rotate(rot,glm::radians(angle3),glm::vec3(0,0,1));
-	glm::mat4 model = glm::translate(glm::mat4(1.0f),translation) * rot;
-	glm::mat4 mvp = proj * model;
+		glm::mat4 model = glm::translate(glm::mat4(1.0f),translation) * rot;
+		glm::mat4 mvp = proj * model;
+
 		s.setUniformMat4("u_MVP",mvp);
-		renderer.Draw(va,s);
+		renderer.Draw(m,s);
 
 
 		ImGui_ImplOpenGL3_NewFrame();
