@@ -2,8 +2,8 @@
 
 
 
-void Renderer::Draw(const Mesh& m,Shader& shader) const 
+void Renderer::Draw(const Mesh* m,Shader& shader) const 
 {	
-		m.Draw(shader);
+		m->Draw(shader);
 
 }

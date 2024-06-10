@@ -9,6 +9,7 @@
 
 VertexArray::VertexArray()
 {
+
 	GLCall(glCreateVertexArrays(1,&m_rendererId));
 	
 }
@@ -30,6 +31,7 @@ void VertexArray::LinkVertexArray(const VertexBuffer& vb, const IndexBuffer& ib,
 	unsigned int offset = 0;
 	std::vector<VertexBufferElement> elements= vbo.getVertexLayout();
 	
+	
 	for(int i =0 ;i < elements.size();i++)
 	{
 		const VertexBufferElement& el =elements[i];
@@ -41,10 +43,9 @@ void VertexArray::LinkVertexArray(const VertexBuffer& vb, const IndexBuffer& ib,
 		
 		offset += el.count * sizeof(el.type);
 	}
-	
+
 	GLCall(glVertexArrayVertexBuffer(m_rendererId,0,vb.getVertexBuffer(),0,vbo.getStride()));
 	GLCall(glVertexArrayElementBuffer(m_rendererId,ib.getIndexBuffer()));
-
 }
 
 

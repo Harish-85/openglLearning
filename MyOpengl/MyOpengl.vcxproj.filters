@@ -22,6 +22,8 @@
     <ClCompile Include="Src\Mesh.cpp" />
     <ClCompile Include="Src\vendor\gltf\tiny_gltf.cpp" />
     <ClCompile Include="Src\modelMesh.cpp" />
+    <ClCompile Include="Src\vendor\wavefront\tiny_obj_loader.cpp" />
+    <ClCompile Include="Src\Engine\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Shader.h" />
@@ -332,6 +334,9 @@
     <ClInclude Include="Src\Mesh.h" />
     <ClInclude Include="Src\vendor\gltf\tiny_gltf.h" />
     <ClInclude Include="Src\modelMesh.h" />
+    <ClInclude Include="..\..\..\..\..\Downloads\My Portfolio_files\tiny_obj_loader.h" />
+    <ClInclude Include="Src\vendor\wavefront\tiny_obj_loader.h" />
+    <ClInclude Include="Src\Engine\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Base.shader" />
@@ -473,6 +478,7 @@
     <None Include="Src\vendor\glm\gtx\vector_angle.inl" />
     <None Include="Src\vendor\glm\gtx\vector_query.inl" />
     <None Include="Src\vendor\glm\gtx\wrap.inl" />
+    <None Include="assimp-vc143-mt.dll" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Tex\showcase1.png" />

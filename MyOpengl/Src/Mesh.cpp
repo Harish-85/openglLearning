@@ -22,7 +22,13 @@ Mesh::Mesh(const std::vector<vertex>& vertices, const std::vector<GLuint>& indic
 
 	
 	va.LinkVertexArray(vb,ib,vbl);
+	
+}
 
+
+Mesh::~Mesh()
+{
+	std::cout << "Mesh destroyed";
 }
 
 void Mesh::Draw(Shader& shader) const
@@ -31,5 +37,9 @@ void Mesh::Draw(Shader& shader) const
 	
 	shader.bind();
 
-	GLCall(glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,nullptr));
+	GLCall(glDrawElements(GL_TRIANGLES,indices.size(),GL_UNSIGNED_INT,0));
 }
+
+
+
+

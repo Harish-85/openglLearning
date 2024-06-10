@@ -1,12 +1,15 @@
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\DebugErrors.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\DebugErrors.obj
+D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Engine\Game.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\Game.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\IndexBuffer.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\IndexBuffer.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\main.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\main.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Mesh.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\Mesh.obj
+D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\modelMesh.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\modelMesh.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Renderer.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\Renderer.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Shader.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\Shader.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\Texture.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\Texture.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\glm\detail\glm.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\glm.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\glm\glm.cppm;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\glm.cppm.obj
+D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\gltf\tiny_gltf.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\tiny_gltf.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\imgui\imgui.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\imgui.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\imgui\imgui_demo.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\imgui_demo.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\imgui\imgui_draw.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\imgui_draw.obj
@@ -15,5 +18,6 @@ D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\imgui\imgui_i
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\imgui\imgui_tables.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\imgui_tables.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\imgui\imgui_widgets.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\imgui_widgets.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\stdImage\std_image.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\std_image.obj
+D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\vendor\wavefront\tiny_obj_loader.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\tiny_obj_loader.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\VertexArray.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\VertexArray.obj
 D:\Projects\GameProjects\Github\openglLearning\MyOpengl\Src\VertexBuffer.cpp;D:\Projects\GameProjects\Github\openglLearning\MyOpengl\x64\Debug\VertexBuffer.obj

@@ -16,5 +16,5 @@ public:
 	
 	void LinkVertexArray(const  VertexBuffer &vb,const  IndexBuffer &ib,const VertexBufferLayout& vbo) const;
 
-
+	
 };

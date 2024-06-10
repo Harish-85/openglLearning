@@ -5,6 +5,7 @@
 #include "DebugErrors.h"
 #include "IndexBuffer.h"
 #include "Mesh.h"
+#include "modelMesh.h"
 #include "Renderer.h"
 #include "Shader.h"
 #include "Texture.h"
@@ -55,7 +56,7 @@ int main(){
 	std::vector <vertex> verts(positions,positions+std::size(positions));
 	std::vector<unsigned int> inds(index,index+std::size(index));
 
-	Mesh m(verts,inds);
+	modelMesh m("C:\\Users\\haris\\OneDrive\\Desktop\\quit.glb");
 
 	std::cout<<"\nVersion " <<(glGetString(GL_VERSION))<<'\n';
 	
@@ -88,10 +89,11 @@ int main(){
 	float angle3 = 30.f;
 
     
-
+	glEnable(GL_DEPTH_TEST);
+	glCullFace(GL_BACK);
 	while(!glfwWindowShouldClose(win))
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1000.0f,1000.0f);
 		glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle),glm::vec3(0,1,0));
@@ -101,7 +103,13 @@ int main(){
 		glm::mat4 mvp = proj * model;
 
 		s.setUniformMat4("u_MVP",mvp);
-		renderer.Draw(m,s);
+		for (size_t i = 0; i < m.meshes.size(); i++)
+		{
+			if(m.meshes[i] == nullptr)
+				continue;
+		renderer.Draw(m.meshes[i],s);
+
+		}
 
 
 		ImGui_ImplOpenGL3_NewFrame();
