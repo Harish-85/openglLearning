@@ -24,6 +24,7 @@
     <ClCompile Include="Src\modelMesh.cpp" />
     <ClCompile Include="Src\vendor\wavefront\tiny_obj_loader.cpp" />
     <ClCompile Include="Src\Engine\Game.cpp" />
+    <ClCompile Include="Src\Engine\glInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Shader.h" />
@@ -337,6 +338,7 @@
     <ClInclude Include="..\..\..\..\..\Downloads\My Portfolio_files\tiny_obj_loader.h" />
     <ClInclude Include="Src\vendor\wavefront\tiny_obj_loader.h" />
     <ClInclude Include="Src\Engine\Game.h" />
+    <ClInclude Include="Src\Engine\glInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Base.shader" />
@@ -479,6 +481,7 @@
     <None Include="Src\vendor\glm\gtx\vector_query.inl" />
     <None Include="Src\vendor\glm\gtx\wrap.inl" />
     <None Include="assimp-vc143-mt.dll" />
+    <None Include="res\3dModels\quit.glb" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Tex\showcase1.png" />

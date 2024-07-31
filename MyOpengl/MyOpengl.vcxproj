@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Src\DebugErrors.cpp" />
     <ClCompile Include="Src\Engine\Game.cpp" />
+    <ClCompile Include="Src\Engine\glInterface.cpp" />
     <ClCompile Include="Src\IndexBuffer.cpp" />
     <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\Mesh.cpp" />
@@ -162,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Downloads\My Portfolio_files\tiny_obj_loader.h" />
     <ClInclude Include="Src\DebugErrors.h" />
+    <ClInclude Include="Src\Engine\glInterface.h" />
     <ClInclude Include="Src\Engine\Game.h" />
     <ClInclude Include="Src\IndexBuffer.h" />
     <ClInclude Include="Src\Mesh.h" />
@@ -474,6 +476,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assimp-vc143-mt.dll" />
+    <None Include="res\3dModels\quit.glb" />
     <None Include="res\Shaders\Base.shader" />
     <None Include="Src\vendor\glm\detail\func_common.inl" />
     <None Include="Src\vendor\glm\detail\func_common_simd.inl" />

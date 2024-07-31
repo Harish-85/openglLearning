@@ -40,10 +40,10 @@ int main(){
 
 	vertex positions[] =
 	{ //               COORDINATES           /            COLORS          /           NORMALS         /       TEXTURE COORDINATES    //
-	vertex{glm::vec3(-100.0f, 0.0f,  100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f)},
-	vertex{glm::vec3(-100.0f, 0.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 1.0f)},
-	vertex{glm::vec3( 100.0f, 0.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f)},
-	vertex{glm::vec3( 100.0f, 0.0f,  100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
+	vertex{glm::vec3(-1, 1,  .0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 0.0f)},
+	vertex{glm::vec3(-1, -1, .0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(0.0f, 1.0f)},
+	vertex{glm::vec3( 1, -1, .0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 1.0f)},
+	vertex{glm::vec3( 1, 1,  .0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec2(1.0f, 0.0f)}
 	};
 
 // Indices for vertices order
@@ -56,7 +56,9 @@ int main(){
 	std::vector <vertex> verts(positions,positions+std::size(positions));
 	std::vector<unsigned int> inds(index,index+std::size(index));
 
-	modelMesh m("C:\\Users\\haris\\OneDrive\\Desktop\\quit.glb");
+	Mesh testQuad(verts,inds);
+
+	modelMesh m("res\\3dModels\\quit.glb");
 
 	std::cout<<"\nVersion " <<(glGetString(GL_VERSION))<<'\n';
 	
@@ -83,33 +85,42 @@ int main(){
 	io.Fonts->AddFontDefault();
 	io.Fonts->Build();
 	
-	glm::vec3 translation(200,200,0);
-	float angle = 30.f;
-	float angle2 = 30.f;
-	float angle3 = 30.f;
-
+	glm::vec3 translation(0,0,0);
+	float scale =1.f;
+	float angle = 0.f;
+	float angle2 = 0.f;
+	float angle3 = 0.f;
+	float camDist = -10.f;
     
 	glEnable(GL_DEPTH_TEST);
-	glCullFace(GL_BACK);
+	glfwSwapInterval(0);
+	
+	
 	while(!glfwWindowShouldClose(win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
-		glm::mat4 proj = glm::ortho(-.0f,500.f,-.0f,500.0f,-1000.0f,1000.0f);
-		glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle),glm::vec3(0,1,0));
+		//glm::mat4 proj = glm::ortho(-250.0f,250.f,-250.0f,250.0f,0.1f,1000.0f);
+		glm::mat4 proj = glm::perspective(glm::radians(45.f),1.f,0.1f,1000.f);
+		glm::mat4	rot = glm::rotate(glm::mat4(1.0),glm::radians(angle + ((float)glfwGetTime() * 100)),glm::vec3(0,1,0));
 		rot = glm::rotate(rot,glm::radians(angle2),glm::vec3(1,0,0));
 		rot = glm::rotate(rot,glm::radians(angle3),glm::vec3(0,0,1));
 		glm::mat4 model = glm::translate(glm::mat4(1.0f),translation) * rot;
-		glm::mat4 mvp = proj * model;
+		glm::mat4 view =glm::translate(glm::mat4(1.0),glm::vec3(0.f,0.f,camDist));
+		model = glm::scale(model,glm::vec3(1,1,1)*scale);
+		glm::mat4 mvp = proj *view* model;
 
+		
 		s.setUniformMat4("u_MVP",mvp);
 		for (size_t i = 0; i < m.meshes.size(); i++)
 		{
 			if(m.meshes[i] == nullptr)
 				continue;
-		renderer.Draw(m.meshes[i],s);
+			renderer.Draw(m.meshes[i],s);
 
 		}
+		
+		renderer.Draw(&testQuad,s);
 
 
 		ImGui_ImplOpenGL3_NewFrame();
@@ -121,10 +132,12 @@ int main(){
 		   ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 
 
-            ImGui::SliderFloat3("Transltaion", &translation.x, -200.f, 200.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+            ImGui::SliderFloat3("Transltaion", &translation.x, -10.f, 10.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
                ImGui::SliderFloat("Angle", &angle, 0, 360);            // Edit 1 float using a slider from 0.0f to 1.0f
             ImGui::SliderFloat("Angle2", &angle2, 0, 360);  
-            ImGui::SliderFloat("Angle3", &angle3, 0, 360);  
+            ImGui::SliderFloat("Angle3", &angle3, 0, 360);
+			ImGui::SliderFloat("Camera Distance", &camDist, -100, 100);
+			ImGui::SliderFloat("Scale",&scale,0,10);
             if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
                 counter++;
             ImGui::SameLine();
@@ -147,4 +160,5 @@ int main(){
 	ImGui::DestroyContext();
 	glfwTerminate();
 	std::cout<<"TEst";
+	return 0;
 }

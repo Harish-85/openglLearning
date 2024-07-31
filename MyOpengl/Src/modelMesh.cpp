@@ -11,7 +11,7 @@ Mesh* modelMesh::processMesh(aiMesh* mesh, const aiScene* scene)
 	for(unsigned int i =0;i<mesh->mNumVertices;i++)
 	{
 		vertex v;
-		float scale = 100;
+		float scale = 1;
 		v.position = glm::vec3(mesh->mVertices[i].x * scale,mesh->mVertices[i].y * scale,mesh->mVertices[i].z *scale);
 		v.normal = glm::vec3(mesh->mNormals[i].x,mesh->mNormals[i].y,mesh->mNormals[i].z);
 		
@@ -26,6 +26,8 @@ Mesh* modelMesh::processMesh(aiMesh* mesh, const aiScene* scene)
 			  v.uv = vec;
 			
 		}
+
+
 		vertices.push_back(v);
 	}
 
@@ -35,21 +37,10 @@ Mesh* modelMesh::processMesh(aiMesh* mesh, const aiScene* scene)
 		for(unsigned int j =0; j<f.mNumIndices;j++)
 		{
 			indices.push_back(f.mIndices[j]);
+			
 		}
 	}
-	//print all vertices
-	//	std::cout<<"printing vertics " << vertices.size()<< std::endl;
-
-	//for(int i =0;i<vertices.size();i++)
-	//{
-	//	std::cout << vertices[i].position.x <<" "<<vertices[i].position.x <<" "<<vertices[i].position.x <<" " <<'\n';
-	//}
-	//std::cout<<"printing indices " << indices.size()<< std::endl;
-
-	//for(int i =0;i<vertices.size();i++)
-	//{
-	//	std::cout << indices[i] <<'\n';
-	//}
+	
 
 	Mesh* m = new Mesh(vertices,indices);
 	return m;

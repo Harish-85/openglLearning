@@ -1,5 +1,8 @@
 #pragma once
 
+#include "glInterface.h"
+#include "../Renderer.h"
+
 class Game
 {
 	public:
@@ -10,5 +13,13 @@ class Game
 	void render();
 	void init();
 	void clean();
+
+	void quit(){ isRunning =false;}
+
+private:
+	Renderer renderer;
+	glInterface gl;
+
+	bool isRunning = false;
 
 };
