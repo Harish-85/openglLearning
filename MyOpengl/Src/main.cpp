@@ -120,7 +120,7 @@ int main(){
 
 		}
 		
-		renderer.Draw(&testQuad,s);
+	//	renderer.Draw(&testQuad,s);
 
 
 		ImGui_ImplOpenGL3_NewFrame();
